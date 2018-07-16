@@ -7,8 +7,9 @@ In this lesson, we are going to talk a little more about `self` in object orient
 ## Objectives
 * Using Self
 * Operating on Self
+* Using self to call instance methods
 
-# Using Self
+# Using `self`
 
 In order to really understand self and how it's used, it is best to use an example. Let's use a the example of a **Person** class. A class produces instance objects, and we know that objects are just pieces of code that bundle together attributes like descriptors and behaviors. A Person can have an descriptors like `height`, `weight`, `age`, etc. and also have behaviors such as `saying_hello`, `eat_breakfast`, `talk_about_weather`, etc. 
 
@@ -60,6 +61,8 @@ print("2. ", the_snail.introduce())
 Uh oh! That's not quite right. We need our introduce method to be a bit more dynamic for each of the Person instance objects to be able to introduce themselves. This is where self comes in! `self`, after all, is the instance object we are asking to introduce itself. And since our instance method already has our instance object available, we can just interpolate our instance object's name attribute. 
 
 Let's again refactor our class to make this change
+
+## Operating on `self`
 
 
 ```python
@@ -152,21 +155,43 @@ Obviously, this method could be improved, but what is important to note is that 
 
 Let's take this a step further and look at how we can call other methods using self. 
 
+## Calling Instance Methods on `self`
+
 Another very important behavior people have is eating. It is something that we all do and it helps prevent us from getting **hangry**, or angry because we're hungry.
 
 
 ```python
 class Person():
 
-    def happy_birthday(self):
-        self.age += 1
-        return f"Happy Birthday to {self.name} (aka ME)! Can't believe I'm {self.age}?!"
+    def eat_sandwhich(self):
+        if (self.hungry):
+            self.relieve_hunger()
+            return "Wow, that really hit the spot! I am so full, but more importantly, I'm not hangry anymore!"
+        else:
+            return "Oh, I don't think I can eat another bite. Thank you, though!"
+    
+    def relieve_hunger(self):
+        print("Hunger is being relieved")
+        self.hungry = False
 
 the_snail = Person()
 the_snail.name = "the Snail"
-the_snail.age = 29
+the_snail.hungry = True
+print("1. ", the_snail.hungry)
+print("2. ", the_snail.eat_sandwhich())
+print("3. ", the_snail.hungry)
+print("4. ", the_snail.eat_sandwhich())
 ```
+
+    1.  True
+    Hunger is being relieved
+    2.  Wow, that really hit the spot! I am so full, but more importantly, I'm not hangry anymore!
+    3.  False
+    4.  Oh, I don't think I can eat another bite. Thank you, though!
+
+
+Awesome! We see that not only are we changing attributes of our instance object, we are also using `self` to call other instance methods, like we would do with the instance object outside of a function. 
 
 ## Summary
 
-SUMMARY
+In this lesson, we examined how we use `self` in OOP. We first reviewed using `self` to define our instance methods appropriately. Next we looked at how we can operated on `self` and leverage it in order to make our instance methods a bit more re-usable and dynamic for each of our instance objects by interpolating our instance object's `name` attribute. We also looked at using more than just `self` as an argument in our methods and using self to change the attributes on an isntance object. Finally, we introduced using self to call other instance methods.
