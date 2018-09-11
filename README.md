@@ -9,7 +9,7 @@ In this lesson, we are going to talk a little more about `self` in object orient
 * Operating on Self
 * Using self to call instance methods
 
-# Using `self`
+## Using `self`
 
 In order to really understand self and how it's used, it is best to use an example. Let's use the example of a **Person** class. A class produces instance objects, and we know that objects are just pieces of code that bundle together attributes like descriptors and behaviors. A Person can have descriptors like `height`, `weight`, `age`, etc. and also have behaviors such as `saying_hello`, `eat_breakfast`, `talk_about_weather`, etc. 
 
